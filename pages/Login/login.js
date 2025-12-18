@@ -1,8 +1,6 @@
 // pages/Login/login.js
 const app = getApp();
-import {
-  instance
-} from "../../utils/http.js";
+import { mockData } from "../../utils/mock.js";
 Page({
 
   /**
@@ -20,43 +18,25 @@ Page({
       nickName,
       avatarUrl
     } = e.detail.userInfo;
-    wx.login({
-      // 接口调用成功的回调函数
-      success: async res => {
-        console.log(res);
-        if (res.code) {
-          // 发送网络请求
-          let result = await instance({
-            url: 'user/wxlogin',
-            method: 'POST',
-            isLogin: true,
-            data: {
-              code: res.code,
-              nickname: nickName,
-              avatar: avatarUrl
-            },
-          })
-          if (result.data.status == 0) {
-            // 登陆成功， 保存token到本地
-            wx.setStorageSync('my_token', result.data.token)
-            // 提示用户登录成功
-            wx.showToast({
-              icon: 'none',
-              duration:1000,
-              title: result.data.message,
-            })
-            // 跳转到首页
-            wx.reLaunch({
-              url: '/pages/Home/home',
-            })
-            // 登陆成功，把token保存到全局变量
-            app.globalData.my_token = result.data.res;
-          }
-        } else {
-          console.log("登陆失败!" + res.errMsg)
-        }
-      }
-    })
+    
+    // 直接使用mock数据模拟登录
+    const loginResult = mockData['user/wxlogin'];
+    if (loginResult.status == 0) {
+      // 登陆成功， 保存token到本地
+      wx.setStorageSync('my_token', loginResult.token)
+      // 提示用户登录成功
+      wx.showToast({
+        icon: 'none',
+        duration:1000,
+        title: loginResult.message,
+      })
+      // 跳转到首页
+      wx.reLaunch({
+        url: '/pages/Home/home',
+      })
+      // 登陆成功，把token保存到全局变量
+      app.globalData.my_token = loginResult.res;
+    }
   },
   // 跳转到手机号登录页
   phoneLogin() {

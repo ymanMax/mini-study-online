@@ -1,5 +1,5 @@
 // pages/Study/study.js
-import { instance } from "../../utils/http.js";
+import { mockData } from "../../utils/mock.js";
 Page({
 
   /**
@@ -14,26 +14,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getStudyProgresses();
-  },
-  // 获取学习进度
-  async getStudyProgresses(){
-    let res = await instance({
-      url:'study/progress'
+    // 直接使用mock数据
+    const progresses = mockData['study/progress'].message;
+    this.setData({
+      isEmpty: progresses.length === 0,
+      studyProgresses: progresses
     })
-    // console.log(res);
-    if(res.data.status === 0){
-      this.setData({
-        isEmpty:false,
-        studyProgresses:res.data.message
-      })
-    }else{
-      wx.showToast({
-        icon:'none',
-        duration:2000,
-        title: '系统出错，请稍后重试...'
-      })
-    }
   },
 
   /**

@@ -1,5 +1,5 @@
 // pages/my/my.js
-import { instance } from '../../utils/http.js'
+import { mockData } from '../../utils/mock.js'
 Page({
 
   /**
@@ -13,14 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function (options) {
-    this.getUserInfoData()
-  },
-
-  getUserInfoData() {
-    instance({ url: 'my/info' }).then(res => {
-      this.setData({
-        userInfo: res.data.message
-      })
+    // 直接使用mock数据
+    this.setData({
+      userInfo: mockData['my/info'].message
     })
   },
 

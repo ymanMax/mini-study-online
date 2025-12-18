@@ -1,8 +1,6 @@
 // pages/Phone_login/phone_login.js
-// 导入网络接口
-import {
-  instance
-} from "../../utils/http.js";
+// 导入mock数据
+import { mockData } from "../../utils/mock.js";
 const app = getApp();
 Page({
   /**
@@ -20,13 +18,6 @@ Page({
     isTimer:false
   },
   // 输入框改变时，同时改变data中的值
-  // changeValue(e){
-  //   console.log(e);
-  //   this.setData({
-  //     phone:e.detail.value
-  //   })
-  // },
-
   changeValue(e) {
     // 属性名表达式，就可以让我们的属性名是动态的
     this.setData({
@@ -34,7 +25,7 @@ Page({
     })
   },
   // 获取验证码
-  async getVcode() {
+  getVcode() {
     if (this.data.showVcode != "获取验证码") return;
 
     this.data.timer = setInterval(() => {
@@ -55,81 +46,45 @@ Page({
       }
     }, 1000)
 
-    // 发送请求
-    let res = await instance({
-      url: 'user/vcode',
-      data: {
-        phone: this.data.phone
-      }
-    })
-    if (res.data.status == 0) {
+    // 直接使用mock数据
+    const vcodeResult = mockData['user/vcode'];
+    if (vcodeResult.status == 0) {
       wx.showToast({
         icon: 'none',
         duration: 1000,
-        title: `${res.data.vcode}`,
+        title: `验证码：${vcodeResult.vcode}`,
       })
     }
   },
   // 手机登录
-  async phoneLogin() {
+  phoneLogin() {
     wx.showLoading({
       title: '登陆中...',
     })
-    let res = await instance({
-      url: 'user/login',
-      method: 'POST',
-      isLogin: true,
-      data: {
-        phone: this.data.phone,
-        vcode: this.data.vcode
-      }
-    })
-    if (res.data.status === 0) {
+    
+    // 直接使用mock数据
+    const loginResult = mockData['user/login'];
+    if (loginResult.status === 0) {
       // 提示登录成功
       wx.showToast({
         icon: 'none',
         duration: 1000,
-        title: res.data.message,
+        title: loginResult.message,
       })
       // 登陆成功，把token保存到本地
-      wx.setStorageSync('my_token', res.data.token)
+      wx.setStorageSync('my_token', loginResult.token)
       // 登陆成功，把token保存到全局变量
-      app.globalData.my_token = res.data.token;
+      app.globalData.my_token = loginResult.token;
       // 跳转到首页
       wx.reLaunch({
         url: '/pages/Home/home',
       })
     }
-    // wx.request({
-    //   url: 'http://localhost:3000/api/user/login',
-    //   method: 'POST',
-    //   data: {
-    //     phone: this.data.phone,
-    //     vcode: this.data.vcode
-    //   },
-    //   success: res => {
-    //     // console.log(res)
-    //     if (res.data.status === 0) {
-    //       // 提示登录成功
-    //       wx.showToast({
-    //         icon: 'none',
-    //         duration: 1000,
-    //         title: res.data.message,
-    //       })
-    //       // 登陆成功，把token保存到本地
-    //       wx.setStorageSync('my_token', res.data.token)
-    //       // 登陆成功，把token保存到全局变量
-    //       app.globalData.my_token = res.data.token;
-    //       // 跳转到首页
-    //       wx.reLaunch({
-    //         url: '/pages/Home/home',
-    //       })
-    //     }
-    //   },
-    //   complete: () => {
-    //     wx.hideLoading()
-    //   }
-    // })
+    
+    // 隐藏加载提示
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 1000)
   },
   // s
   /**

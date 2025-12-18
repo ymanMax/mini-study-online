@@ -1,5 +1,5 @@
 // pages/search/search.js
-import { instance } from "../../utils/http.js";
+import { mockData } from "../../utils/mock.js";
 Page({
   data: {
     inputShowed: false,
@@ -27,17 +27,17 @@ Page({
       inputVal: e.detail.value
     });
   },
-  confirm: async function(e){
-    let res = await instance({
-      url:'course/search',
-      data:{
-        name:e.detail.value
-      }
+  confirm: function(e){
+    // 直接使用mock数据，模拟搜索功能
+    const searchTerm = e.detail.value.toLowerCase();
+    const allCourses = mockData['course/list'].message;
+    const filteredCourses = allCourses.filter(course => 
+      course.title.toLowerCase().includes(searchTerm) || 
+      course.subtitle.toLowerCase().includes(searchTerm)
+    );
+    
+    this.setData({
+      courses: filteredCourses.length > 0 ? filteredCourses : mockData['course/search'].message
     })
-    if(res.data.status === 0){
-      this.setData({
-        courses:res.data.message
-      })
-    }
   }
 })

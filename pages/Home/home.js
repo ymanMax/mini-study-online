@@ -1,7 +1,5 @@
 // pages/Home/home.js
-import {
-  instance
-} from "../../utils/http.js";
+import { mockData } from "../../utils/mock.js";
 Page({
 
   /**
@@ -17,39 +15,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSwiperImage();
-    this.getCourseData();
-    this.getVideosData();
-  },
-  // 页面加载时，获取轮播图数据
-  async getSwiperImage() {
-    let res = await instance({
-      url: 'home/swipers',
-    })
-    if (res.data.status === 0) {
-      this.setData({
-        swiperImages: res.data.message
-      });
-    }
-  },
-  // 获取推荐课程
-  async getCourseData() {
-    const res = await instance({
-      url: 'home/course'
-    })
+    // 直接使用mock数据
     this.setData({
-      course: res.data.message
-    })
-  },
-
-  // 获取首页热门视屏
-  async getVideosData() {
-    const res = await instance({
-      url: 'home/video'
-    })
-    this.setData({
-      videos: res.data.message
-    })
+      swiperImages: mockData['home/swipers'].message,
+      course: mockData['home/course'].message,
+      videos: mockData['home/video'].message
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

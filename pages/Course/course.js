@@ -1,5 +1,5 @@
 // pages/Course/course.js
-import { instance } from "../../utils/http.js";
+import { mockData } from "../../utils/mock.js";
 Page({
 
   /**
@@ -13,20 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCourseList();
-  },
-
-  // 获取课程列表
-  async getCourseList(){
-    let res = await instance({
-      url:'course/list'
+    // 直接使用mock数据
+    this.setData({
+      courses: mockData['course/list'].message
     })
-    
-    if(res.data.status === 0){
-      this.setData({
-        courses:res.data.message
-      })
-    }
   },
 
   /**
