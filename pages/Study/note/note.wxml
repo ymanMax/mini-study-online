@@ -1,0 +1,65 @@
+<!--pages/study/note/note.wxml-->
+<view class="container">
+  <!-- 页面标题和操作按钮 -->
+  <view class="page-header">
+    <text class="page-title">学习笔记</text>
+    <button class="add-btn" bindtap="onAddNote">+ 新建</button>
+  </view>
+
+  <!-- 笔记列表 -->
+  <view class="notes-list" wx:if="{{notes.length > 0}}">
+    <view wx:for="{{notes}}" wx:key="id" class="note-item" bindtap="onNoteTap" data-note="{{item}}">
+      <view class="note-header">
+        <text class="note-title">{{item.title}}</text>
+        <text class="note-date">{{item.create_time}}</text>
+      </view>
+      <view class="note-meta">
+        <text class="note-course">{{item.course_name}}</text>
+        <text class="note-chapter">第{{item.chapter_id}}章</text>
+      </view>
+      <text class="note-content">{{item.content}}</text>
+      <view class="note-actions">
+        <button class="edit-btn" size="mini" bindtap="onEditNote" data-note="{{item}}">编辑</button>
+        <button class="delete-btn" size="mini" bindtap="onDeleteNote" data-note="{{item}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{notes.length == 0}}">
+    <image class="empty-icon" src="/assets/images/note_empty@2x.png"></image>
+    <text class="empty-text">还没有学习笔记</text>
+    <text class="empty-subtitle">在学习过程中记录笔记，加深理解</text>
+    <button class="empty-btn" bindtap="onAddNote">创建第一条笔记</button>
+  </view>
+
+  <!-- 添加/编辑笔记弹窗 -->
+  <view class="modal" wx:if="{{showModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">{{editingNote ? '编辑笔记' : '新建笔记'}}</text>
+        <text class="close-btn" bindtap="onCloseModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">课程章节</text>
+          <picker value="{{selectedChapter}}" range="{{chapterOptions}}" bindchange="onChapterChange">
+            <view class="picker-text">{{chapterOptions[selectedChapter] || '选择章节'}}</view>
+          </picker>
+        </view>
+        <view class="form-item">
+          <text class="form-label">笔记标题</text>
+          <input class="form-input" placeholder="请输入笔记标题" value="{{noteTitle}}" bindinput="onTitleInput" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">笔记内容</text>
+          <textarea class="form-textarea" placeholder="请输入笔记内容" value="{{noteContent}}" bindinput="onContentInput" auto-height maxlength="500"></textarea>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="cancel-btn" bindtap="onCloseModal">取消</button>
+        <button class="confirm-btn" bindtap="onSaveNote">{{editingNote ? '保存' : '创建'}}</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,113 @@
+<!--pages/study/center/center.wxml-->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">学习中心</text>
+  </view>
+
+  <!-- 学习统计卡片 -->
+  <view class="stats-section">
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-number">{{studyData.total_courses}}</view>
+        <view class="stat-label">已报名课程</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-number">{{studyData.in_progress_courses}}</view>
+        <view class="stat-label">学习中</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-number">{{studyData.completed_courses}}</view>
+        <view class="stat-label">已完成</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 课程列表 -->
+  <view class="courses-section">
+    <text class="section-title">我的课程</text>
+
+    <!-- 学习中课程 -->
+    <view wx:if="{{hasInProgressCourses}}">
+      <text class="course-category">学习中</text>
+      <view class="course-list">
+        <view wx:for="{{inProgressCourses}}" wx:key="id" class="course-item" bindtap="onCourseTap" data-course="{{item}}">
+          <image class="course-cover" src="{{item.cover}}"></image>
+          <view class="course-info">
+            <text class="course-title">{{item.title}}</text>
+            <view class="course-progress">
+              <view class="progress-bar">
+                <view class="progress-fill" style="width: {{item.progress}}%"></view>
+              </view>
+              <text class="progress-text">{{item.progress}}%</text>
+            </view>
+          </view>
+          <view class="course-status in-progress">进行中</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 已完成课程 -->
+    <view wx:if="{{hasCompletedCourses}}">
+      <text class="course-category">已完成</text>
+      <view class="course-list">
+        <view wx:for="{{completedCourses}}" wx:key="id" class="course-item" bindtap="onCourseTap" data-course="{{item}}">
+          <image class="course-cover" src="{{item.cover}}"></image>
+          <view class="course-info">
+            <text class="course-title">{{item.title}}</text>
+            <view class="course-progress">
+              <view class="progress-bar">
+                <view class="progress-fill completed" style="width: 100%"></view>
+              </view>
+              <text class="progress-text">100%</text>
+            </view>
+          </view>
+          <view class="course-status completed">已完成</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 未开始课程 -->
+    <view wx:if="{{hasNotStartedCourses}}">
+      <text class="course-category">未开始</text>
+      <view class="course-list">
+        <view wx:for="{{notStartedCourses}}" wx:key="id" class="course-item" bindtap="onCourseTap" data-course="{{item}}">
+          <image class="course-cover" src="{{item.cover}}"></image>
+          <view class="course-info">
+            <text class="course-title">{{item.title}}</text>
+            <view class="course-progress">
+              <view class="progress-bar">
+                <view class="progress-fill" style="width: 0%"></view>
+              </view>
+              <text class="progress-text">0%</text>
+            </view>
+          </view>
+          <view class="course-status not-started">未开始</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{!hasAnyCourses}}" class="empty-state">
+      <image class="empty-icon" src="/assets/images/empty@2x.png"></image>
+      <text class="empty-text">您还没有报名任何课程</text>
+      <button class="empty-btn" bindtap="onBrowseCourses">去选课</button>
+    </view>
+  </view>
+
+  <!-- 证书区域 -->
+  <view wx:if="{{hasCertificates}}" class="certificates-section">
+    <text class="section-title">我的证书</text>
+    <view class="certificates-list">
+      <view wx:for="{{certificates}}" wx:key="id" class="certificate-item" bindtap="onCertificateTap" data-certificate="{{item}}">
+        <view class="certificate-info">
+          <text class="certificate-title">{{item.course_name}}</text>
+          <text class="certificate-date">颁发日期: {{item.issue_date}}</text>
+        </view>
+        <view class="certificate-action">
+          <text class="view-btn">查看</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

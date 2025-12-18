@@ -240,6 +240,148 @@ export const mockData = {
       user_id: 1002,
       nickname: '手机用户'
     }
+  },
+
+  // 课程详情数据
+  'course/detail': {
+    status: 0,
+    message: {
+      id: 1,
+      title: '前端开发入门课程',
+      subtitle: '从零开始学习HTML、CSS和JavaScript',
+      cover: '/assets/images/logo@2x.png',
+      total_chapters: 12,
+      completed_chapters: 6,
+      progress: 50,
+      total_duration: 360,
+      studied_duration: 180,
+      chapters: [
+        {
+          id: 1,
+          title: '第1章：HTML基础',
+          duration: 30,
+          completed: true,
+          video_url: 'mock_video_1'
+        },
+        {
+          id: 2,
+          title: '第2章：CSS样式',
+          duration: 30,
+          completed: true,
+          video_url: 'mock_video_2'
+        },
+        {
+          id: 3,
+          title: '第3章：JavaScript入门',
+          duration: 45,
+          completed: true,
+          video_url: 'mock_video_3'
+        },
+        {
+          id: 4,
+          title: '第4章：DOM操作',
+          duration: 45,
+          completed: true,
+          video_url: 'mock_video_4'
+        },
+        {
+          id: 5,
+          title: '第5章：事件处理',
+          duration: 30,
+          completed: true,
+          video_url: 'mock_video_5'
+        },
+        {
+          id: 6,
+          title: '第6章：表单处理',
+          duration: 30,
+          completed: true,
+          video_url: 'mock_video_6'
+        },
+        {
+          id: 7,
+          title: '第7章：AJAX请求',
+          duration: 30,
+          completed: false,
+          video_url: 'mock_video_7'
+        },
+        {
+          id: 8,
+          title: '第8章：ES6新特性',
+          duration: 30,
+          completed: false,
+          video_url: 'mock_video_8'
+        }
+      ]
+    }
+  },
+
+  // 学习笔记数据
+  'study/notes': {
+    status: 0,
+    message: [
+      {
+        id: 1,
+        course_id: 1,
+        chapter_id: 3,
+        content: 'JavaScript的核心概念包括变量、函数、对象和数组。',
+        create_time: '2024-01-15 14:30:00'
+      },
+      {
+        id: 2,
+        course_id: 1,
+        chapter_id: 4,
+        content: 'DOM操作可以通过getElementById、querySelector等方法获取元素。',
+        create_time: '2024-01-16 10:20:00'
+      }
+    ]
+  },
+
+  // 证书数据
+  'certificate/list': {
+    status: 0,
+    message: [
+      {
+        id: 1,
+        course_id: 2,
+        course_name: 'JavaScript进阶课程',
+        issue_date: '2024-01-10',
+        certificate_url: '/mock/certificate_1.pdf'
+      }
+    ]
+  },
+
+  // 个人学习中心数据
+  'study/center': {
+    status: 0,
+    message: {
+      total_courses: 3,
+      in_progress_courses: 2,
+      completed_courses: 1,
+      courses: [
+        {
+          id: 1,
+          title: '前端开发入门课程',
+          cover: '/assets/images/logo@2x.png',
+          progress: 50,
+          status: 'in_progress'
+        },
+        {
+          id: 2,
+          title: 'JavaScript进阶课程',
+          cover: '/assets/images/mushroom_logo@2x.png',
+          progress: 100,
+          status: 'completed'
+        },
+        {
+          id: 3,
+          title: 'React实战项目',
+          cover: '/assets/images/auto_logo@2x.png',
+          progress: 0,
+          status: 'not_started'
+        }
+      ]
+    }
   }
 }
 

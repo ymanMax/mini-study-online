@@ -1,2 +1,58 @@
 <!--pages/Course-detail/course-detail.wxml-->
-<text>pages/Course-detail/course-detail.wxml</text>
+<view class="container">
+  <!-- 课程封面和基本信息 -->
+  <view class="course-header">
+    <image class="course-cover" src="{{courseData.cover}}"></image>
+    <view class="course-info">
+      <text class="course-title">{{courseData.title}}</text>
+      <text class="course-subtitle">{{courseData.subtitle}}</text>
+      <view class="course-stats">
+        <text>总章节: {{courseData.total_chapters}}</text>
+        <text>已完成: {{courseData.completed_chapters}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 学习进度条 -->
+  <view class="progress-section">
+    <view class="progress-header">
+      <text>学习进度</text>
+      <text>{{courseData.progress}}%</text>
+    </view>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{courseData.progress}}%"></view>
+    </view>
+    <view class="progress-details">
+      <text>已学习 {{courseData.studied_duration}} 分钟</text>
+      <text>总计 {{courseData.total_duration}} 分钟</text>
+    </view>
+  </view>
+
+  <!-- 章节列表 -->
+  <view class="chapters-section">
+    <text class="section-title">课程章节</text>
+    <view class="chapters-list">
+      <view wx:for="{{courseData.chapters}}" wx:key="id" class="chapter-item {{item.completed ? 'completed' : ''}}" bindtap="onChapterTap" data-chapter="{{item}}">
+        <view class="chapter-left">
+          <view class="chapter-icon {{item.completed ? 'completed' : ''}}">
+            <text wx:if="{{item.completed}}">✓</text>
+            <text wx:else>{{item.id}}</text>
+          </view>
+          <view class="chapter-info">
+            <text class="chapter-title">{{item.title}}</text>
+            <text class="chapter-duration">{{item.duration}}分钟</text>
+          </view>
+        </view>
+        <view class="chapter-right">
+          <view wx:if="{{item.completed}}" class="completed-badge">已完成</view>
+          <view wx:else class="play-icon">▶</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 证书按钮（仅当课程完成时显示） -->
+  <view wx:if="{{courseData.progress >= 100}}" class="certificate-section">
+    <button class="certificate-btn" bindtap="onGetCertificate">领取课程证书</button>
+  </view>
+</view>

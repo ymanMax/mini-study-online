@@ -1,0 +1,264 @@
+/* pages/study/center/center.wxss */
+.container {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 20rpx;
+}
+
+/* 页面标题 */
+.page-header {
+  background-color: #007aff;
+  color: #fff;
+  padding: 30rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 统计卡片 */
+.stats-section {
+  padding: 0 30rpx 30rpx;
+}
+
+.stats-grid {
+  display: flex;
+  gap: 20rpx;
+}
+
+.stat-card {
+  flex: 1;
+  background-color: #fff;
+  padding: 30rpx 20rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.stat-number {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #007aff;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 课程列表 */
+.courses-section {
+  padding: 0 30rpx 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 25rpx;
+}
+
+.course-category {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #666;
+  display: block;
+  margin-bottom: 15rpx;
+  padding-left: 10rpx;
+  border-left: 6rpx solid #007aff;
+}
+
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.course-item {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.course-item:active {
+  transform: scale(0.98);
+}
+
+.course-cover {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.course-info {
+  flex: 1;
+}
+
+.course-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 15rpx;
+  line-height: 1.4;
+}
+
+.course-progress {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8rpx;
+  background-color: #f0f0f0;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #007aff;
+  border-radius: 4rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-fill.completed {
+  background-color: #4cd964;
+}
+
+.progress-text {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #999;
+  min-width: 60rpx;
+}
+
+.course-status {
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.course-status.in-progress {
+  background-color: #e8f4ff;
+  color: #007aff;
+}
+
+.course-status.completed {
+  background-color: #e8fff0;
+  color: #4cd964;
+}
+
+.course-status.not-started {
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 80rpx 30rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.empty-icon {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  display: block;
+  margin-bottom: 30rpx;
+}
+
+.empty-btn {
+  background-color: #007aff;
+  color: #fff;
+  font-size: 28rpx;
+  padding: 20rpx 40rpx;
+  border-radius: 50rpx;
+  border: none;
+}
+
+.empty-btn:active {
+  opacity: 0.8;
+}
+
+/* 证书区域 */
+.certificates-section {
+  padding: 0 30rpx 30rpx;
+}
+
+.certificates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.certificate-item {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.certificate-item:active {
+  transform: scale(0.98);
+}
+
+.certificate-info {
+  flex: 1;
+}
+
+.certificate-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.certificate-date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.certificate-action {
+  margin-left: 30rpx;
+}
+
+.view-btn {
+  background-color: #007aff;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 25rpx;
+}
