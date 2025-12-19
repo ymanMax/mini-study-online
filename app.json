@@ -4,6 +4,7 @@
     "pages/Phone_login/phone_login",
     "pages/Home/home",
     "pages/Study/study",
+    "pages/Study/calendar",
     "pages/My/my",
     "pages/Course/course",
     "pages/Course-detail/course-detail",
