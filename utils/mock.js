@@ -178,8 +178,143 @@ export const mockData = {
       nickname: '酷小鱼',
       study_hour: 23,
       follow_count: 15,
-      course_count: 8
+      course_count: 8,
+      points: 1250,
+      level: '中级学习者',
+      isTeacher: false,
+      groups: 3
     }
+  },
+
+  // 积分记录
+  'user/points': {
+    status: 0,
+    message: [
+      {
+        id: 1,
+        type: '回答问题',
+        points: '+50',
+        description: '回答了"JavaScript闭包是什么？"问题',
+        time: '2小时前'
+      },
+      {
+        id: 2,
+        type: '最佳答案',
+        points: '+100',
+        description: '回答被选为最佳答案',
+        time: '昨天'
+      },
+      {
+        id: 3,
+        type: '加入小组',
+        points: '+20',
+        description: '加入了"前端开发交流群"',
+        time: '3天前'
+      }
+    ]
+  },
+
+  // 学习小组数据
+  'groups/list': {
+    status: 0,
+    message: [
+      {
+        id: 1,
+        name: '前端开发交流群',
+        description: '前端开发者的聚集地，分享最新技术和实战经验',
+        avatar: '/assets/group1.png',
+        members: 256,
+        joined: true,
+        creator: '前端大师'
+      },
+      {
+        id: 2,
+        name: 'Python学习小组',
+        description: 'Python爱好者的乐园，一起学习，共同进步',
+        avatar: '/assets/group2.png',
+        members: 189,
+        joined: true,
+        creator: 'Python专家'
+      },
+      {
+        id: 3,
+        name: '算法学习小分队',
+        description: '攻克数据结构与算法，挑战大厂面试',
+        avatar: '/assets/group3.png',
+        members: 145,
+        joined: false,
+        creator: '算法之神'
+      }
+    ]
+  },
+
+  // 社区话题数据
+  'community/topics': {
+    status: 0,
+    message: [
+      {
+        id: 1,
+        title: '如何高效学习前端开发？',
+        description: '大家分享一下自己学习前端的方法和技巧，特别是对于零基础的初学者有什么建议？',
+        author: {
+          id: 101,
+          username: '前端大师',
+          avatar: '/assets/avatar1.png',
+          isTeacher: true
+        },
+        postTime: '2小时前',
+        comments: 23,
+        likes: 89,
+        views: 523
+      },
+      {
+        id: 2,
+        title: 'Python学习心得分享',
+        description: '学习Python已经三个月了，感觉这门语言真的很强大。分享一下我整理的学习资料和实战项目。',
+        author: {
+          id: 102,
+          username: 'Python爱好者',
+          avatar: '/assets/avatar2.png',
+          isTeacher: false
+        },
+        postTime: '5小时前',
+        comments: 15,
+        likes: 45,
+        views: 312
+      }
+    ]
+  },
+
+  // 课程问答数据
+  'course/questions': {
+    status: 0,
+    message: [
+      {
+        id: 1,
+        content: '请问JavaScript中的闭包是什么？如何正确使用？',
+        asker: {
+          id: 201,
+          username: '初学者小王',
+          avatar: '/assets/avatar4.png'
+        },
+        askTime: '2小时前',
+        answers: 8,
+        likes: 15,
+        bestAnswer: {
+          id: 101,
+          content: '闭包是指有权访问另一个函数作用域中变量的函数...',
+          answerer: {
+            id: 101,
+            username: '前端大师',
+            avatar: '/assets/avatar1.png',
+            isTeacher: true
+          },
+          answerTime: '1小时前',
+          likes: 32,
+          rewardPoints: 50
+        }
+      }
+    ]
   },
 
   // 课程搜索数据

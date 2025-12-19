@@ -1,2 +1,74 @@
 <!--pages/Course-detail/course-detail.wxml-->
-<text>pages/Course-detail/course-detail.wxml</text>
+<view class="course-detail-container">
+  <!-- 课程基本信息 -->
+  <view class="course-header">
+    <image class="course-cover" src="{{course.cover}}" />
+    <view class="course-info">
+      <text class="course-title">{{course.title}}</text>
+      <text class="course-teacher">讲师：{{course.teacher}}</text>
+      <text class="course-desc">{{course.description}}</text>
+      <view class="course-stats">
+        <text class="stat">{{course.students}}人学习</text>
+        <text class="stat">{{course.rating}}分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 问答区域 -->
+  <view class="qa-section">
+    <view class="qa-header">
+      <text class="section-title">课程问答</text>
+      <button class="ask-btn" bindtap="onAskQuestion">我要提问</button>
+    </view>
+
+    <!-- 问题列表 -->
+    <view class="question-list">
+      <block wx:for="{{questions}}" wx:key="id">
+        <view class="question-item">
+          <view class="question-header">
+            <image class="user-avatar" src="{{item.asker.avatar}}" />
+            <view class="question-meta">
+              <text class="asker-name">{{item.asker.username}}</text>
+              <text class="ask-time">{{item.askTime}}</text>
+            </view>
+          </view>
+          <view class="question-content">
+            <text>{{item.content}}</text>
+          </view>
+          <view class="question-stats">
+            <text class="answer-count">{{item.answers}}个回答</text>
+            <text class="like-count">👍 {{item.likes}}</text>
+          </view>
+
+          <!-- 最佳答案 -->
+          <block wx:if="{{item.bestAnswer}}">
+            <view class="best-answer">
+              <view class="answer-header">
+                <image class="answer-avatar" src="{{item.bestAnswer.answerer.avatar}}" />
+                <view class="answer-meta">
+                  <text class="answerer-name">{{item.bestAnswer.answerer.username}}</text>
+                  <block wx:if="{{item.bestAnswer.answerer.isTeacher}}">
+                    <text class="teacher-tag">讲师</text>
+                  </block>
+                  <text class="answer-time">{{item.bestAnswer.answerTime}}</text>
+                </view>
+              </view>
+              <view class="answer-content">
+                <text>{{item.bestAnswer.content}}</text>
+              </view>
+              <view class="answer-stats">
+                <text class="answer-like">👍 {{item.bestAnswer.likes}}</text>
+                <text class="reward">奖励 {{item.bestAnswer.rewardPoints}} 积分</text>
+              </view>
+            </view>
+          </block>
+
+          <!-- 查看更多回答 -->
+          <button class="view-answers-btn" bindtap="viewAnswers" data-question="{{item}}">
+            查看更多回答
+          </button>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -7,7 +7,8 @@
     "pages/My/my",
     "pages/Course/course",
     "pages/Course-detail/course-detail",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/community/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -32,6 +33,12 @@
         "text": "学习",
         "iconPath":"assets/tabs/icon_study@2x.png",
         "selectedIconPath":"assets/tabs/icon_study_selected@2x.png"
+      },
+      {
+        "pagePath": "pages/community/index",
+        "text": "社区",
+        "iconPath":"assets/tabs/icon_course@2x.png",
+        "selectedIconPath":"assets/tabs/icon_course_selected@2x.png"
       },
       {
         "pagePath": "pages/Course/course",
