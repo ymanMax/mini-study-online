@@ -1,0 +1,71 @@
+<!--pages/community/index.wxml-->
+<view class="community-container">
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索话题、问题或用户" value="{{searchKeyword}}" bindinput="onSearchInput" />
+    <button class="search-btn" bindtap="onSearch">搜索</button>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-section">
+    <button class="publish-btn" bindtap="onPublish">发布话题</button>
+  </view>
+
+  <!-- 话题列表 -->
+  <view class="topic-list">
+    <block wx:for="{{topics}}" wx:key="id">
+      <view class="topic-item" bindtap="goToTopicDetail" data-topic="{{item}}">
+        <view class="topic-header">
+          <image class="avatar" src="{{item.author.avatar}}" />
+          <view class="user-info">
+            <text class="username">{{item.author.username}}</text>
+            <text class="post-time">{{item.postTime}}</text>
+          </view>
+          <block wx:if="{{item.author.isTeacher}}">
+            <text class="teacher-tag">讲师</text>
+          </block>
+        </view>
+        <view class="topic-content">
+          <text class="topic-title">{{item.title}}</text>
+          <text class="topic-desc">{{item.description}}</text>
+        </view>
+        <view class="topic-stats">
+          <view class="stat-item">
+            <text class="stat-icon">💬</text>
+            <text class="stat-text">{{item.comments}}条评论</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-icon">👍</text>
+            <text class="stat-text">{{item.likes}}个赞</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-icon">📊</text>
+            <text class="stat-text">{{item.views}}次浏览</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 学习小组 -->
+  <view class="group-section">
+    <view class="section-title">
+      <text>热门学习小组</text>
+      <button class="more-btn" bindtap="goToGroups">更多</button>
+    </view>
+    <view class="group-list">
+      <block wx:for="{{groups}}" wx:key="id">
+        <view class="group-item" bindtap="joinGroup" data-group="{{item}}">
+          <image class="group-avatar" src="{{item.avatar}}" />
+          <view class="group-info">
+            <text class="group-name">{{item.name}}</text>
+            <text class="group-desc">{{item.description}}</text>
+            <text class="group-members">{{item.members}}人</text>
+          </view>
+          <button class="join-btn" wx:if="{{!item.joined}}">加入</button>
+          <button class="joined-btn" wx:else>已加入</button>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

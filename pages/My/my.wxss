@@ -26,6 +26,36 @@
   color: #fff;
 }
 
+.teacher-badge {
+  margin-top: 15rpx;
+  background-color: #ff6b6b;
+  color: #fff;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.level-info {
+  background-color: #fff;
+  border-radius: 12rpx;
+  margin: 30rpx 32rpx;
+  padding: 30rpx;
+  text-align: center;
+}
+
+.level-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.level-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+
 .tips {
   position: absolute;
   top: 400rpx;
