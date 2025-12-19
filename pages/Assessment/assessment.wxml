@@ -1,0 +1,129 @@
+<!--pages/Assessment/assessment.wxml-->
+<view class="assessment-container">
+  <!-- 测评头部 -->
+  <view class="assessment-header">
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{(currentQuestionIndex / totalQuestions) * 100}}%"></view>
+    </view>
+    <view class="progress-text">
+      第{{currentQuestionIndex + 1}}题 / 共{{totalQuestions}}题
+    </view>
+  </view>
+
+  <!-- 题目内容 -->
+  <view class="question-card" wx:if="{{questions.length > 0}}">
+    <view class="question-title">
+      {{currentQuestion.question}}
+    </view>
+
+    <!-- 单选题选项 -->
+    <view class="options-group" wx:if="{{currentQuestion.type === 'single_choice'}}">
+      <view
+        class="option-item {{selectedAnswer === option.key ? 'selected' : ''}}"
+        wx:for="{{currentQuestion.options}}"
+        wx:key="key"
+        bindtap="selectAnswer"
+        data-option="{{option.key}}"
+      >
+        <view class="option-label">{{option.key}}</view>
+        <view class="option-text">{{option.text}}</view>
+      </view>
+    </view>
+
+    <!-- 多选题选项 -->
+    <view class="options-group" wx:if="{{currentQuestion.type === 'multiple_choice'}}">
+      <view
+        class="option-item {{selectedAnswers.indexOf(option.key) > -1 ? 'selected' : ''}}"
+        wx:for="{{currentQuestion.options}}"
+        wx:key="key"
+        bindtap="toggleAnswer"
+        data-option="{{option.key}}"
+      >
+        <view class="option-label">{{option.key}}</view>
+        <view class="option-text">{{option.text}}</view>
+        <view class="option-checkbox {{selectedAnswers.indexOf(option.key) > -1 ? 'checked' : ''}}">
+          ✓
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作按钮 -->
+  <view class="bottom-actions">
+    <button
+      class="btn btn-primary"
+      bindtap="nextQuestion"
+      disabled="{{!canProceed}}"
+    >
+      {{currentQuestionIndex < totalQuestions - 1 ? '下一题' : '提交测评'}}
+    </button>
+  </view>
+
+  <!-- 测评结果页面 -->
+  <view class="result-container" wx:if="{{showResult}}">
+    <view class="result-header">
+      <view class="result-icon">✓</view>
+      <view class="result-title">测评完成！</view>
+    </view>
+
+    <view class="result-card">
+      <view class="result-item">
+        <view class="result-label">总得分</view>
+        <view class="result-value">{{assessmentResult.total_score}}</view>
+      </view>
+
+      <view class="result-item">
+        <view class="result-label">学习水平</view>
+        <view class="result-value level-{{assessmentResult.level}}">
+          {{assessmentResult.level === 'beginner' ? '初级' :
+            assessmentResult.level === 'intermediate' ? '中级' : '高级'}}
+        </view>
+      </view>
+    </view>
+
+    <view class="result-section">
+      <view class="section-title">你的优势</view>
+      <view class="advantage-list">
+        <view class="advantage-item" wx:for="{{assessmentResult.strengths}}" wx:key="index">
+          <view class="advantage-icon">✓</view>
+          <view class="advantage-text">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="result-section">
+      <view class="section-title">需要提升的方面</view>
+      <view class="weakness-list">
+        <view class="weakness-item" wx:for="{{assessmentResult.weaknesses}}" wx:key="index">
+          <view class="weakness-icon">!</view>
+          <view class="weakness-text">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="result-section">
+      <view class="section-title">学习建议</view>
+      <view class="recommendation-list">
+        <view class="recommendation-item" wx:for="{{assessmentResult.recommendations}}" wx:key="index">
+          <view class="recommendation-icon">💡</view>
+          <view class="recommendation-text">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="result-actions">
+      <button class="btn btn-primary" bindtap="generateLearningPath">
+        生成个性化学习路径
+      </button>
+      <button class="btn btn-secondary" bindtap="retryAssessment">
+        重新测评
+      </button>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(cmd:*)",
+      "Bash(del:*)",
+      "Bash(npm run build)"
+    ]
+  }
+}
