@@ -5,8 +5,85 @@
   padding-bottom: 32rpx;
   align-items: center;
   position: relative;
+  min-height: 100vh;
+  background-color: #f5f5f5;
 }
 
+/* 顶部导航 */
+.top-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 40rpx;
+  background-color: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.calendar-btn {
+  background-color: #007aff;
+  color: #fff;
+  border-radius: 20rpx;
+  padding: 12rpx 20rpx;
+  font-size: 24rpx;
+}
+
+.calendar-text {
+  color: #fff;
+}
+
+/* 标签页容器 */
+.tab-container {
+  width: 100%;
+  flex: 1;
+}
+
+.tab-bar {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 2rpx solid #eee;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 30rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #007aff;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 4rpx;
+  background-color: #007aff;
+  border-radius: 2rpx;
+}
+
+.tab-text {
+  font-size: 28rpx;
+}
+
+.tab-content {
+  padding: 30rpx;
+}
+
+/* 学习进度样式 */
 .study-item {
   margin-top: 32rpx;
   background-color: #fff;
@@ -54,4 +131,295 @@
   align-items: center;
   height: 500rpx;
   font-size: 15px;
+  color: #999;
+}
+
+/* 学习计划样式 */
+.plans-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.plans-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.create-plan-btn {
+  background-color: #007aff;
+  color: #fff;
+  border-radius: 20rpx;
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+}
+
+.plans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.plan-item {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.plan-info {
+  flex: 1;
+}
+
+.plan-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.plan-description {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.plan-period {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.plan-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.plan-progress {
+  background-color: #f0f0f0;
+  border-radius: 15rpx;
+  padding: 8rpx 16rpx;
+}
+
+.progress-text {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.adjust-btn {
+  background-color: #f0f0f0;
+  color: #666;
+  border-radius: 12rpx;
+  padding: 8rpx 16rpx;
+  font-size: 22rpx;
+}
+
+.plan-tasks {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.tasks-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-title {
+  font-size: 26rpx;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.task-period {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 6rpx;
+}
+
+.task-status {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+}
+
+.task-status.completed {
+  color: #07c160;
+  background-color: #f0f9eb;
+}
+
+.task-status.in_progress {
+  color: #ff9500;
+  background-color: #fff8e6;
+}
+
+.task-status.pending {
+  color: #999;
+  background-color: #f0f0f0;
+}
+
+.complete-btn {
+  background-color: #07c160;
+  color: #fff;
+  border-radius: 12rpx;
+  padding: 8rpx 16rpx;
+  font-size: 22rpx;
+}
+
+.no-plans-tip {
+  margin-top: 200rpx;
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
+  padding: 0 40rpx;
+}
+
+/* 学习分析样式 */
+.analytics-header {
+  margin-bottom: 30rpx;
+}
+
+.analytics-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.analytics-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.analytics-overview {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.overview-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.overview-label {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.overview-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.goals-section,
+.recommendations-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.goal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.goal-item:last-child {
+  border-bottom: none;
+}
+
+.goal-info {
+  flex: 1;
+}
+
+.goal-title {
+  font-size: 26rpx;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.goal-progress {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.goal-status {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 12rpx;
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.goal-status.achieved {
+  background-color: #f0f9eb;
+  color: #07c160;
+}
+
+.recommendation-item {
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.recommendation-item:last-child {
+  border-bottom: none;
+}
+
+.recommendation-text {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.no-analytics-tip {
+  margin-top: 200rpx;
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
 }

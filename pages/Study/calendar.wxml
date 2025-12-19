@@ -1,0 +1,74 @@
+<!--pages/Study/calendar.wxml-->
+<view class="calendar-container">
+  <!-- 日历头部 -->
+  <view class="calendar-header">
+    <view class="header-left">
+      <button class="nav-btn" bindtap="prevMonth">
+        <text class="nav-icon">‹</text>
+      </button>
+    </view>
+    <view class="header-center">
+      <text class="current-month">{{currentDate.getFullYear()}}年{{currentDate.getMonth() + 1}}月</text>
+      <button class="today-btn" bindtap="today">今天</button>
+    </view>
+    <view class="header-right">
+      <button class="nav-btn" bindtap="nextMonth">
+        <text class="nav-icon">›</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 星期标题 -->
+  <view class="week-title">
+    <view class="week-item">日</view>
+    <view class="week-item">一</view>
+    <view class="week-item">二</view>
+    <view class="week-item">三</view>
+    <view class="week-item">四</view>
+    <view class="week-item">五</view>
+    <view class="week-item">六</view>
+  </view>
+
+  <!-- 日历网格 -->
+  <view class="calendar-grid">
+    <!-- 上一月空白日期 -->
+    <view wx:for="{{Array(7 - currentDate.getDay()).fill()}}" wx:key="index" class="calendar-day empty"></view>
+
+    <!-- 当月日期 -->
+    <view wx:for="{{Array(31).fill()}}" wx:key="index" class="calendar-day {{isToday(index + 1) ? 'today' : ''}} {{hasEvent(index + 1) ? 'has-event' : ''}} {{selectedDate === formatDate(index + 1) ? 'selected' : ''}}" data-date="{{formatDate(index + 1)}}" bindtap="onDateSelect">
+      <text class="day-number">{{index + 1}}</text>
+      <view wx:if="{{hasEvent(index + 1)}}" class="event-dot {{getEvent(index + 1).completed ? 'completed' : ''}}"></view>
+    </view>
+  </view>
+
+  <!-- 事件详情弹窗 -->
+  <view wx:if="{{showEventDetail}}" class="event-detail-overlay" bindtap="closeEventDetail">
+    <view class="event-detail-content" catchtap="stopPropagation">
+      <view class="event-detail-header">
+        <text class="event-title">{{selectedEvent.title}}</text>
+        <button class="close-btn" bindtap="closeEventDetail">×</button>
+      </view>
+      <view class="event-detail-body">
+        <view class="event-info">
+          <text class="info-label">日期：</text>
+          <text class="info-value">{{selectedEvent.date}}</text>
+        </view>
+        <view class="event-info">
+          <text class="info-label">类型：</text>
+          <text class="info-value {{selectedEvent.type}}">{{selectedEvent.type === 'study' ? '学习' : selectedEvent.type === 'practice' ? '练习' : selectedEvent.type === 'review' ? '复习' : '其他'}}</text>
+        </view>
+        <view class="event-info">
+          <text class="info-label">时长：</text>
+          <text class="info-value">{{selectedEvent.duration}}小时</text>
+        </view>
+        <view class="event-info">
+          <text class="info-label">状态：</text>
+          <text class="info-value {{selectedEvent.completed ? 'completed' : 'pending'}}">{{selectedEvent.completed ? '已完成' : '待完成'}}</text>
+        </view>
+      </view>
+      <view wx:if="{{!selectedEvent.completed}}" class="event-detail-footer">
+        <button class="complete-event-btn" bindtap="markEventComplete">标记为完成</button>
+      </view>
+    </view>
+  </view>
+</view>

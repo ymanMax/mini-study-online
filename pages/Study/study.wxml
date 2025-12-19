@@ -1,16 +1,141 @@
 <!--pages/Study/study.wxml-->
 <view class="study-container">
-	<view wx:if="{{!isEmpty}}" class="study-item" wx:for="{{studyProgresses}}" wx:key="{{item.sid}}">
-		<image src="{{item.icon}}" alt="" />
-		<view class="meta">
-			<text class="title">{{item.title}}</text>
-			<text class="progress">已学习{{item.study_hour}}课时/{{item.total_hour || 0}}课时</text>
-		</view>
-		<view class="circle">
-			<circle canvasId="{{item.sid}}" progress="{{item.study_progress}}" width="{{55}}" height="{{55}}"></circle>
-		</view>
-	</view>
-	<view wx:if="{{isEmpty}}">
-		<text class="no-study-tip">您还没有任何学习记录哦，赶快去学习吧~</text>
-	</view>
+  <!-- 顶部导航 -->
+  <view class="top-nav">
+    <view class="nav-left">
+      <text class="page-title">学习中心</text>
+    </view>
+    <view class="nav-right">
+      <button class="calendar-btn" bindtap="goToCalendar">
+        <text class="calendar-text">学习日历</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 标签页切换 -->
+  <view class="tab-container">
+    <view class="tab-bar">
+      <view class="tab-item {{activeTab === 'progress' ? 'active' : ''}}" data-tab="progress" bindtap="onTabChange">
+        <text class="tab-text">学习进度</text>
+      </view>
+      <view class="tab-item {{activeTab === 'plans' ? 'active' : ''}}" data-tab="plans" bindtap="onTabChange">
+        <text class="tab-text">学习计划</text>
+      </view>
+      <view class="tab-item {{activeTab === 'analytics' ? 'active' : ''}}" data-tab="analytics" bindtap="onTabChange">
+        <text class="tab-text">学习分析</text>
+      </view>
+    </view>
+
+    <!-- 学习进度内容 -->
+    <view wx:if="{{activeTab === 'progress'}}" class="tab-content">
+      <view wx:if="{{!isEmpty}}" class="study-item" wx:for="{{studyProgresses}}" wx:key="{{item.sid}}">
+        <image src="{{item.icon}}" alt="" />
+        <view class="meta">
+          <text class="title">{{item.title}}</text>
+          <text class="progress">已学习{{item.study_hour}}课时/{{item.total_hour || 0}}课时</text>
+        </view>
+        <view class="circle">
+          <circle canvasId="{{item.sid}}" progress="{{item.study_progress}}" width="{{55}}" height="{{55}}"></circle>
+        </view>
+      </view>
+      <view wx:if="{{isEmpty}}">
+        <text class="no-study-tip">您还没有任何学习记录哦，赶快去学习吧~</text>
+      </view>
+    </view>
+
+    <!-- 学习计划内容 -->
+    <view wx:if="{{activeTab === 'plans'}}" class="tab-content">
+      <view class="plans-header">
+        <text class="plans-title">我的学习计划</text>
+        <button class="create-plan-btn" bindtap="createPlan">+ 创建计划</button>
+      </view>
+
+      <view wx:if="{{studyPlans.length > 0}}" class="plans-list">
+        <view class="plan-item" wx:for="{{studyPlans}}" wx:key="{{item.id}}">
+          <view class="plan-header">
+            <view class="plan-info">
+              <text class="plan-title">{{item.title}}</text>
+              <text class="plan-description">{{item.description}}</text>
+              <text class="plan-period">{{item.start_date}} 至 {{item.end_date}}</text>
+            </view>
+            <view class="plan-actions">
+              <view class="plan-progress">
+                <text class="progress-text">{{item.progress}}%</text>
+              </view>
+              <button class="adjust-btn" data-plan-id="{{item.id}}" bindtap="adjustPlan">调整</button>
+            </view>
+          </view>
+
+          <view class="plan-tasks">
+            <text class="tasks-title">计划任务：</text>
+            <view class="task-item" wx:for="{{item.tasks}}" wx:key="{{item.id}}">
+              <view class="task-info">
+                <text class="task-title">{{item.title}}</text>
+                <text class="task-period">{{item.start_date}} - {{item.end_date}}</text>
+                <text class="task-status {{item.status}}">{{item.status === 'completed' ? '已完成' : item.status === 'in_progress' ? '进行中' : '待开始'}}</text>
+              </view>
+              <view wx:if="{{item.status !== 'completed'}}" class="task-actions">
+                <button class="complete-btn" data-task-id="{{item.id}}" bindtap="markTaskComplete">完成</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{studyPlans.length === 0}}" class="no-plans-tip">
+        <text>您还没有创建任何学习计划，点击"创建计划"开始制定您的学习目标吧~</text>
+      </view>
+    </view>
+
+    <!-- 学习分析内容 -->
+    <view wx:if="{{activeTab === 'analytics'}}" class="tab-content">
+      <view class="analytics-header">
+        <text class="analytics-title">学习数据分析</text>
+      </view>
+
+      <view wx:if="{{studyAnalytics}}" class="analytics-content">
+        <!-- 学习概览 -->
+        <view class="analytics-overview">
+          <view class="overview-item">
+            <text class="overview-label">总学习时长</text>
+            <text class="overview-value">{{studyAnalytics.total_study_hours}}小时</text>
+          </view>
+          <view class="overview-item">
+            <text class="overview-label">已完成课程</text>
+            <text class="overview-value">{{studyAnalytics.completed_courses}}门</text>
+          </view>
+          <view class="overview-item">
+            <text class="overview-label">完成率</text>
+            <text class="overview-value">{{studyAnalytics.completion_rate}}%</text>
+          </view>
+        </view>
+
+        <!-- 学习目标 -->
+        <view class="goals-section">
+          <text class="section-title">学习目标</text>
+          <view class="goal-item" wx:for="{{studyAnalytics.study_goals}}" wx:key="{{item.id}}">
+            <view class="goal-info">
+              <text class="goal-title">{{item.title}}</text>
+              <text class="goal-progress">{{item.current}}/{{item.target}}</text>
+            </view>
+            <view class="goal-status {{item.achieved ? 'achieved' : ''}}">
+              <text>{{item.achieved ? '已完成' : '进行中'}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 学习建议 -->
+        <view class="recommendations-section">
+          <text class="section-title">学习建议</text>
+          <view class="recommendation-item" wx:for="{{studyAnalytics.recommendations}}" wx:key="{{index}}">
+            <text class="recommendation-text">• {{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{!studyAnalytics}}" class="no-analytics-tip">
+        <text>暂无学习数据分析数据</text>
+      </view>
+    </view>
+  </view>
 </view>
