@@ -23,6 +23,49 @@
 		</navigator>
 	</scroll-view>
 </view>
+<!-- 猜你喜欢 -->
+<view wx:if="{{guessYouLike.length > 0}}">
+	<view class="tips">
+		<text class="tip">猜你喜欢</text>
+		<image src="/assets/images/arrow@2x.png" alt="" />
+	</view>
+	<view class="recommend-courses">
+		<navigator class="recommend-item" wx:for="{{guessYouLike}}" wx:key="{{item.id}}">
+			<image class="course-icon" src="{{item.icon}}" alt="" />
+			<view class="course-info">
+				<text class="course-title">{{item.title}}</text>
+				<text class="course-subtitle">{{item.subtitle}}</text>
+				<view class="course-meta">
+					<text class="course-level">Lv.{{item.level}}</text>
+					<text class="match-score">匹配度{{(item.match_score * 100).toFixed(0)}}%</text>
+				</view>
+			</view>
+		</navigator>
+	</view>
+</view>
+
+<!-- 热门课程 -->
+<view wx:if="{{hotCourses.length > 0}}">
+	<view class="tips">
+		<text class="tip">热门课程</text>
+		<image src="/assets/images/arrow@2x.png" alt="" />
+	</view>
+	<view class="hot-courses">
+		<navigator class="hot-item" wx:for="{{hotCourses}}" wx:key="{{item.id}}">
+			<image class="course-icon" src="{{item.icon}}" alt="" />
+			<view class="course-info">
+				<text class="course-title">{{item.title}}</text>
+				<text class="course-subtitle">{{item.subtitle}}</text>
+				<view class="course-meta">
+					<text class="course-level">Lv.{{item.level}}</text>
+					<text class="enroll-count">{{item.enroll_count}}人已报名</text>
+					<text class="rating">★{{item.rating}}</text>
+				</view>
+			</view>
+		</navigator>
+	</view>
+</view>
+
 <!-- 热门视频 -->
 <view>
 	<view class="tips">
