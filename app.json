@@ -7,7 +7,10 @@
     "pages/My/my",
     "pages/Course/course",
     "pages/Course-detail/course-detail",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/study/center/center",
+    "pages/certificate/detail/detail",
+    "pages/study/note/note"
   ],
   "window": {
     "backgroundTextStyle": "light",

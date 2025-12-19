@@ -1,0 +1,64 @@
+<!--pages/certificate/detail/detail.wxml-->
+<view class="container">
+  <!-- 证书卡片 -->
+  <view class="certificate-card">
+    <view class="certificate-header">
+      <image class="logo" src="/assets/images/logo@2x.png"></image>
+      <text class="title">课程完成证书</text>
+      <text class="subtitle">COURSE COMPLETION CERTIFICATE</text>
+    </view>
+
+    <view class="certificate-body">
+      <text class="award-text">本证书授予</text>
+      <text class="user-name">{{certificateData.user_name}}</text>
+      <text class="course-text">已成功完成</text>
+      <text class="course-name">{{certificateData.course_name}}</text>
+      <text class="course-desc">{{certificateData.course_desc}}</text>
+    </view>
+
+    <view class="certificate-footer">
+      <view class="signature-section">
+        <image class="signature" src="/assets/images/signature@2x.png"></image>
+        <text class="signatory">张老师</text>
+        <text class="position">课程讲师</text>
+      </view>
+      <view class="date-section">
+        <text class="issue-date">{{certificateData.issue_date}}</text>
+        <text class="date-label">颁发日期</text>
+      </view>
+    </view>
+
+    <view class="certificate-id">
+      <text>证书编号: {{certificateData.certificate_id}}</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="download-btn" bindtap="onDownloadCertificate">
+      <text class="btn-text">下载证书</text>
+    </button>
+    <button class="share-btn" bindtap="onShareCertificate">
+      <text class="btn-text">分享证书</text>
+    </button>
+  </view>
+
+  <!-- 证书说明 -->
+  <view class="certificate-info">
+    <text class="info-title">证书说明</text>
+    <view class="info-list">
+      <view class="info-item">
+        <text class="info-icon">✓</text>
+        <text class="info-text">本证书证明您已完成全部课程学习</text>
+      </view>
+      <view class="info-item">
+        <text class="info-icon">✓</text>
+        <text class="info-text">证书编号唯一，可用于证明学习经历</text>
+      </view>
+      <view class="info-item">
+        <text class="info-icon">✓</text>
+        <text class="info-text">建议保存证书图片或PDF文件</text>
+      </view>
+    </view>
+  </view>
+</view>
