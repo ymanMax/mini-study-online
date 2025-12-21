@@ -1,0 +1,65 @@
+<!--pages/exam/take.wxml-->
+<view class="exam-container">
+  <!-- 考试头部信息 -->
+  <view class="exam-header" wx:if="{{ exam }}">
+    <view class="exam-info">
+      <text class="exam-title">{{ exam.title }}</text>
+      <text class="exam-time">
+        剩余时间: {{ timeRemaining }}分钟
+      </text>
+    </view>
+    <view class="question-progress">
+      <text>第 {{ currentQuestionIndex + 1 }} / {{ exam.questions.length }} 题</text>
+    </view>
+  </view>
+
+  <!-- 题目列表导航 -->
+  <scroll-view class="question-nav" scroll-x="true" wx:if="{{ exam }}">
+    <view
+      wx:for="{{ exam.questions }}"
+      wx:key="id"
+      class="question-nav-item {{ index == currentQuestionIndex ? 'active' : '' }} {{ userAnswers[item.id] ? 'answered' : '' }}"
+      bindtap="jumpToQuestion"
+      data-index="{{ index }}"
+    >
+      {{ index + 1 }}
+    </view>
+  </scroll-view>
+
+  <!-- 当前题目内容 -->
+  <view class="question-content" wx:if="{{ exam && exam.questions[currentQuestionIndex] }}">
+    <view class="question-title">
+      <text class="question-type">
+        {{ exam.questions[currentQuestionIndex].type == 'single' ? '单选题' :
+           exam.questions[currentQuestionIndex].type == 'multiple' ? '多选题' : '判断题' }}
+      </text>
+      <text class="question-text">{{ exam.questions[currentQuestionIndex].content }}</text>
+    </view>
+
+    <view class="question-options">
+      <view
+        wx:for="{{ exam.questions[currentQuestionIndex].options }}"
+        wx:key="id"
+        class="option-item {{ userAnswers[exam.questions[currentQuestionIndex].id] == item.id || (userAnswers[exam.questions[currentQuestionIndex].id] && userAnswers[exam.questions[currentQuestionIndex].id].includes(item.id)) ? 'selected' : '' }}"
+        bindtap="selectAnswer"
+        data-question-id="{{ exam.questions[currentQuestionIndex].id }}"
+        data-answer="{{ item.id }}"
+        data-type="{{ exam.questions[currentQuestionIndex].type }}"
+      >
+        <text class="option-letter">{{ item.id }}</text>
+        <text class="option-text">{{ item.text }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 导航按钮 -->
+  <view class="nav-buttons" wx:if="{{ exam }}">
+    <button class="nav-btn prev-btn" bindtap="prevQuestion" disabled="{{ currentQuestionIndex == 0 }}">上一题</button>
+    <button class="nav-btn next-btn" bindtap="nextQuestion" disabled="{{ currentQuestionIndex == exam.questions.length - 1 }}">下一题</button>
+  </view>
+
+  <!-- 交卷按钮 -->
+  <view class="submit-section" wx:if="{{ exam }}">
+    <button class="submit-btn" bindtap="submitExam">交卷</button>
+  </view>
+</view>

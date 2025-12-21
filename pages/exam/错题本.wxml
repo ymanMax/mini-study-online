@@ -1,0 +1,48 @@
+<!--pages/exam/错题本.wxml-->
+<view class="wrong-container">
+  <view class="page-header">
+    <text class="page-title">错题本</text>
+    <button class="clear-btn" bindtap="clearWrongQuestions">清空</button>
+  </view>
+
+  <view class="wrong-list" wx:if="{{ wrongQuestions.length > 0 }}">
+    <view class="wrong-item" wx:for="{{ wrongQuestions }}" wx:key="id">
+      <view class="question-header">
+        <text class="question-type">
+          {{ item.type == 'single' ? '单选题' : item.type == 'multiple' ? '多选题' : '判断题' }}
+        </text>
+        <text class="question-date">{{ item.date }}</text>
+      </view>
+      <view class="question-content">{{ item.content }}</view>
+
+      <view class="question-options" wx:if="{{ item.options }}">
+        <view class="option-item" wx:for="{{ item.options }}" wx:key="id">
+          <text class="option-letter">{{ item.id }}</text>
+          <text class="option-text">{{ item.text }}</text>
+        </view>
+      </view>
+
+      <view class="answer-info">
+        <view class="answer-item">
+          <text class="answer-label">你的答案：</text>
+          <text class="answer-value wrong">{{ item.userAnswer }}</text>
+        </view>
+        <view class="answer-item">
+          <text class="answer-label">正确答案：</text>
+          <text class="answer-value correct">{{ item.correctAnswer }}</text>
+        </view>
+      </view>
+
+      <view class="explanation">{{ item.explanation }}</view>
+
+      <button class="retry-btn" bindtap="retryQuestion" data-question-id="{{ item.id }}">
+        重新练习
+      </button>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{ wrongQuestions.length == 0 }}">
+    <text class="empty-text">暂无错题</text>
+    <text class="empty-desc">继续努力，争取少犯错！</text>
+  </view>
+</view>

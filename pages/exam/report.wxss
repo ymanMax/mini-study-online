@@ -1,0 +1,132 @@
+/* pages/exam/report.wxss */
+.report-container {
+  padding: 20rpx;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.score-section {
+  background: linear-gradient(135deg, #ff9a29, #ffd89b);
+  color: white;
+  padding: 40rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.score-title {
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.score-display {
+  font-size: 80rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.score-info {
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+.analysis-section, .study-report-section, .wrong-section {
+  background: white;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  border-left: 6rpx solid #ff9a29;
+  padding-left: 20rpx;
+}
+
+.analysis-content, .report-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.analysis-item, .report-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 0;
+  font-size: 28rpx;
+}
+
+.item-label {
+  font-weight: bold;
+  color: #666;
+  min-width: 150rpx;
+}
+
+.item-value {
+  color: #333;
+}
+
+.wrong-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.wrong-item {
+  background: #fff5f5;
+  padding: 25rpx;
+  border-radius: 8rpx;
+  border-left: 6rpx solid #ff6b6b;
+}
+
+.wrong-question {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.wrong-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-bottom: 15rpx;
+  font-size: 26rpx;
+}
+
+.wrong-explanation {
+  color: #666;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+  padding: 0 20rpx 40rpx;
+}
+
+.action-btn {
+  padding: 25rpx;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+}
+
+.wrong-btn {
+  background: #ff6b6b;
+  color: white;
+}
+
+.retake-btn {
+  background: #1890ff;
+  color: white;
+}
+
+.practice-btn {
+  background: #52c41a;
+  color: white;
+}
