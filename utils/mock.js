@@ -240,6 +240,213 @@ export const mockData = {
       user_id: 1002,
       nickname: '手机用户'
     }
+  },
+
+  // 考试数据 - 章节练习
+  'exam/chapter-exercises': {
+    status: 0,
+    message: {
+      examId: 1001,
+      title: '第一章 前端基础练习题',
+      type: 'chapter',
+      questions: [
+        {
+          id: 1,
+          type: 'single',
+          content: 'HTML的全称是什么？',
+          options: [
+            { id: 'A', text: 'Hyper Text Markup Language' },
+            { id: 'B', text: 'High Tech Modern Language' },
+            { id: 'C', text: 'Hyperlinks and Text Markup Language' },
+            { id: 'D', text: 'Home Tool Markup Language' }
+          ],
+          answer: 'A',
+          explanation: 'HTML的正确全称是Hyper Text Markup Language（超文本标记语言）'
+        },
+        {
+          id: 2,
+          type: 'multiple',
+          content: '以下哪些是CSS的选择器？',
+          options: [
+            { id: 'A', text: '类选择器' },
+            { id: 'B', text: 'ID选择器' },
+            { id: 'C', text: '标签选择器' },
+            { id: 'D', text: '属性选择器' }
+          ],
+          answer: ['A', 'B', 'C', 'D'],
+          explanation: 'CSS支持类选择器、ID选择器、标签选择器和属性选择器等多种选择器'
+        },
+        {
+          id: 3,
+          type: 'judge',
+          content: 'JavaScript是一种编译型语言。',
+          options: [
+            { id: 'A', text: '正确' },
+            { id: 'B', text: '错误' }
+          ],
+          answer: 'B',
+          explanation: 'JavaScript是一种解释型语言，不需要预先编译'
+        }
+      ]
+    }
+  },
+
+  // 考试数据 - 模拟考试
+  'exam/simulate': {
+    status: 0,
+    message: {
+      examId: 2001,
+      title: '前端开发模拟考试',
+      type: 'simulate',
+      duration: 120,
+      questions: [
+        {
+          id: 1,
+          type: 'single',
+          content: '以下哪个不是JavaScript的数据类型？',
+          options: [
+            { id: 'A', text: 'String' },
+            { id: 'B', text: 'Number' },
+            { id: 'C', text: 'Boolean' },
+            { id: 'D', text: 'Character' }
+          ],
+          answer: 'D',
+          explanation: 'JavaScript的数据类型包括String、Number、Boolean等，但没有Character类型'
+        },
+        {
+          id: 2,
+          type: 'multiple',
+          content: '以下哪些方法可以用来操作数组？',
+          options: [
+            { id: 'A', text: 'push()' },
+            { id: 'B', text: 'pop()' },
+            { id: 'C', text: 'shift()' },
+            { id: 'D', text: 'unshift()' }
+          ],
+          answer: ['A', 'B', 'C', 'D'],
+          explanation: '这些都是JavaScript数组的常用操作方法'
+        },
+        {
+          id: 3,
+          type: 'judge',
+          content: 'React是由Facebook开发的JavaScript库。',
+          options: [
+            { id: 'A', text: '正确' },
+            { id: 'B', text: '错误' }
+          ],
+          answer: 'A',
+          explanation: 'React确实是由Facebook开发并维护的'
+        }
+      ]
+    }
+  },
+
+  // 考试数据 - 真题练习
+  'exam/real': {
+    status: 0,
+    message: {
+      examId: 3001,
+      title: '前端开发真题练习',
+      type: 'real',
+      questions: [
+        {
+          id: 1,
+          type: 'single',
+          content: '在CSS中，哪个属性用于设置文本颜色？',
+          options: [
+            { id: 'A', text: 'font-color' },
+            { id: 'B', text: 'text-color' },
+            { id: 'C', text: 'color' },
+            { id: 'D', text: 'text-style' }
+          ],
+          answer: 'C',
+          explanation: 'CSS中使用color属性设置文本颜色'
+        }
+      ]
+    }
+  },
+
+  // 考试提交结果
+  'exam/submit': {
+    status: 0,
+    message: {
+      score: 85,
+      total: 100,
+      correctCount: 17,
+      totalCount: 20,
+      wrongQuestions: [
+        {
+          id: 5,
+          type: 'single',
+          content: '以下哪个不是HTTP请求方法？',
+          options: [
+            { id: 'A', text: 'GET' },
+            { id: 'B', text: 'POST' },
+            { id: 'C', text: 'PUT' },
+            { id: 'D', text: 'FETCH' }
+          ],
+          userAnswer: 'C',
+          correctAnswer: 'D',
+          explanation: 'HTTP请求方法包括GET、POST、PUT等，FETCH是JavaScript的API'
+        }
+      ],
+      analysis: {
+        strongPoints: ['HTML', 'CSS'],
+        weakPoints: ['JavaScript异步编程', '网络请求']
+      }
+    }
+  },
+
+  // 学习报告
+  'report/study': {
+    status: 0,
+    message: {
+      totalStudyHours: 45,
+      completedCourses: 3,
+      totalExams: 5,
+      averageScore: 82,
+      ranking: '前20%',
+      improvement: '+15%',
+      weakTopics: ['JavaScript高级', '算法'],
+      recentPerformance: [80, 85, 90, 78, 88]
+    }
+  },
+
+  // 错题本
+  'exam/wrong-questions': {
+    status: 0,
+    message: [
+      {
+        id: 5,
+        type: 'single',
+        content: '以下哪个不是HTTP请求方法？',
+        options: [
+          { id: 'A', text: 'GET' },
+          { id: 'B', text: 'POST' },
+          { id: 'C', text: 'PUT' },
+          { id: 'D', text: 'FETCH' }
+        ],
+        userAnswer: 'C',
+        correctAnswer: 'D',
+        explanation: 'HTTP请求方法包括GET、POST、PUT等，FETCH是JavaScript的API',
+        date: '2024-01-15'
+      },
+      {
+        id: 8,
+        type: 'multiple',
+        content: '以下哪些是React Hooks？',
+        options: [
+          { id: 'A', text: 'useState' },
+          { id: 'B', text: 'useEffect' },
+          { id: 'C', text: 'useContext' },
+          { id: 'D', text: 'useRedux' }
+        ],
+        userAnswer: ['A', 'B', 'D'],
+        correctAnswer: ['A', 'B', 'C'],
+        explanation: 'useState、useEffect、useContext是React Hooks，useRedux不是',
+        date: '2024-01-12'
+      }
+    ]
   }
 }
 

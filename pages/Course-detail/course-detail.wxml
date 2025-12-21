@@ -1,2 +1,27 @@
 <!--pages/Course-detail/course-detail.wxml-->
-<text>pages/Course-detail/course-detail.wxml</text>
+<view class="course-detail-container">
+  <!-- 课程信息 -->
+  <view class="course-info" wx:if="{{ course }}">
+    <text class="course-title">{{ course.title }}</text>
+    <text class="course-desc">{{ course.description }}</text>
+  </view>
+
+  <!-- 章节列表 -->
+  <view class="chapters-list" wx:if="{{ chapters.length > 0 }}">
+    <view class="section-title">课程章节</view>
+    <view class="chapter-item" wx:for="{{ chapters }}" wx:key="id">
+      <view class="chapter-info">
+        <text class="chapter-title">{{ item.title }}</text>
+        <text class="chapter-content">{{ item.content }}</text>
+      </view>
+      <button
+        class="exercise-btn"
+        bindtap="startChapterExercise"
+        data-chapter-id="{{ item.id }}"
+        wx:if="{{ item.hasExercise }}"
+      >
+        开始练习
+      </button>
+    </view>
+  </view>
+</view>

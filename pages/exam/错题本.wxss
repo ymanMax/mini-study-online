@@ -1,0 +1,162 @@
+/* pages/exam/错题本.wxss */
+.wrong-container {
+  padding: 20rpx;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.clear-btn {
+  background: #ff6b6b;
+  color: white;
+  padding: 15rpx 25rpx;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+}
+
+.wrong-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.wrong-item {
+  background: white;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.question-type {
+  background: #ff9a29;
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+}
+
+.question-date {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.question-content {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.question-options {
+  margin-bottom: 20rpx;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx;
+  background: #f9f9f9;
+  margin-bottom: 10rpx;
+  border-radius: 6rpx;
+}
+
+.option-letter {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #e0e0e0;
+  border-radius: 50%;
+  margin-right: 15rpx;
+  font-size: 24rpx;
+}
+
+.option-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.answer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  margin-bottom: 15rpx;
+}
+
+.answer-item {
+  font-size: 26rpx;
+}
+
+.answer-label {
+  font-weight: bold;
+  color: #666;
+}
+
+.answer-value {
+  margin-left: 10rpx;
+}
+
+.answer-value.wrong {
+  color: #ff6b6b;
+}
+
+.answer-value.correct {
+  color: #52c41a;
+}
+
+.explanation {
+  color: #666;
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.retry-btn {
+  background: #1890ff;
+  color: white;
+  padding: 15rpx 30rpx;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+}
+
+.empty-state {
+  background: white;
+  padding: 80rpx 40rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #999;
+}

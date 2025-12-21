@@ -1,0 +1,22 @@
+<!--pages/exam/练习模式.wxml-->
+<view class="practice-container">
+  <view class="page-header">
+    <text class="page-title">练习模式</text>
+    <text class="page-subtitle">选择适合您的练习方式</text>
+  </view>
+
+  <view class="practice-list">
+    <view class="practice-item" wx:for="{{ practiceModes }}" wx:key="id" bindtap="startPractice" data-mode="{{ item.id }}">
+      <view class="practice-icon">{{ item.icon }}</view>
+      <view class="practice-info">
+        <view class="practice-title">{{ item.title }}</view>
+        <view class="practice-desc">{{ item.desc }}</view>
+        <view class="practice-meta">
+          <text class="meta-item">{{ item.questions }}题</text>
+          <text class="meta-item">{{ item.duration }}分钟</text>
+        </view>
+      </view>
+      <view class="practice-arrow">></view>
+    </view>
+  </view>
+</view>

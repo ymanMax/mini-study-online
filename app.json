@@ -7,7 +7,11 @@
     "pages/My/my",
     "pages/Course/course",
     "pages/Course-detail/course-detail",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/exam/take",
+    "pages/exam/report",
+    "pages/exam/错题本",
+    "pages/exam/练习模式"
   ],
   "window": {
     "backgroundTextStyle": "light",
